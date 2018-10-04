@@ -12,11 +12,11 @@
         protected abstract T Build();
         private void OnDisable(PoolObj<T> obj)
         {
-            obj.GetObj.Activate();
+            obj.GetObj.Deactivate();
         }
         private void OnActive(PoolObj<T> obj)
         {
-            obj.GetObj.Deactivate();
+            obj.GetObj.Activate();
         }
         public T GetObj()
         {

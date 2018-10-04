@@ -10,14 +10,27 @@ public class BulletExample : MonoBehaviour, IPooleable<BulletExample>
     public Vector3 point;
     public SpriteRenderer mysp;
 
+    bool move;
+
 
     public void Activate()
     {
         mysp.enabled = true;
+        move = true;
+        gameObject.name = "Bullet (Active)";
     }
 
     public void Deactivate()
     {
         mysp.enabled = false;
+        move = false;
+        gameObject.name = "Bullet";
     }
+
+    void Update()
+    {
+        if (move)
+            transform.forward += transform.forward * 10;
+    }
+
 }

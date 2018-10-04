@@ -13,15 +13,17 @@ public class BulletHandlerExample : PoolHandler<BulletExample>
     Vector3 point;
     int damage;
 
-    [SerializeField] GameObject model;
-    [SerializeField] Transform parent;
+    GameObject model;
+    Transform parent;
 
     //Implementar el constructor del PoolHandler con el :base + los parametros que se te canten
-    public BulletHandlerExample(Vector3 point, float speed, int damage, int cant = 10) : base(cant)
+    public BulletHandlerExample(Vector3 point,GameObject model, Transform parent, float speed, int damage, int cant = 10) : base(cant)
     {
         this.speed = speed;
         this.point = point;
         this.damage = damage;
+        this.model = model;
+        this.parent = parent;
     }
 
     //overraidear el Build (Muy Importante), este internamente apunta al delegate del Factory

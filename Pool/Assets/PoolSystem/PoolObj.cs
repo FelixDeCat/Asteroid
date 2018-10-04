@@ -18,7 +18,7 @@
         {
             get
             {
-                return IsActive;
+                return isActive;
             }
         }
 

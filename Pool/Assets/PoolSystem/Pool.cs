@@ -18,6 +18,7 @@
             this.factory = new Factory<T>(factory);
             this.OnActive = OnActive;
             this.OnDisable = OnDisable;
+            this.cant = cant;
         }
 
         PoolObj<T> CreateAndReturnLast()
@@ -38,6 +39,11 @@
             return pool[pool.Count - 1];
         }
 
+        void Create()
+        {
+
+        }
+
         public PoolObj<T> GetObject()
         {
             return GetNext().Activate();
@@ -46,7 +52,7 @@
         PoolObj<T> GetNext()
         {
             for (int i = pool.Count - 1; i > 0; i--)
-                if (pool[i].IsActive) return pool[i];
+                if (!pool[i].IsActive) return pool[i];
             return CreateAndReturnLast();
         }
 
