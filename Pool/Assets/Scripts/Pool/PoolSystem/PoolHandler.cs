@@ -18,9 +18,11 @@
         {
             obj.GetObj.Activate();
         }
-        public T GetObj()
-        {
+        protected virtual T GetObj() {
             return pool.GetObject().GetObj;
+        }
+        protected void Release(T obj) {
+            pool.ReleaseObject(obj);
         }
     }
 }
