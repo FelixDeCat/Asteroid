@@ -17,13 +17,8 @@ public class Player : MonoBehaviour {
     private void Awake()
     {
         bulletHandle = new BulletHandler(transform.position, bullet_model, bullet_parent,  5, 10, 10);
-        screenlimits = new ScreenLimits(transform,OnRepositioning);
+        screenlimits = new ScreenLimits(transform);
 
-    }
-
-    void OnRepositioning(Vector3 vector)
-    {
-        transform.position = vector;
     }
 
     void Update()
