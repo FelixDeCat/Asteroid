@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    
     public GameObject bullet_model;
     public Transform bullet_parent;
 
     BulletHandler bulletHandle;
-    public LifeManager lifemanager;
+
+    public UI_Life obs_ui_life;
+    LifeManager lifemanager;
 
     public Rigidbody2D rb2d;
     ScreenLimits screenlimits;
 
-    private void Awake()
+    private void Start()
     {
         bulletHandle = new BulletHandler(transform.position, bullet_model, bullet_parent,  5, 10, 10);
-        screenlimits = new ScreenLimits(transform);
-
+        screenlimits = new ScreenLimits(transform,1);
+        lifemanager = new LifeManager(3, obs_ui_life);
     }
 
     void Update()

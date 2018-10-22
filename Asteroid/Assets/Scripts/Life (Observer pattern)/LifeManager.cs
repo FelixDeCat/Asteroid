@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LifeManager : MonoBehaviour {
+﻿public class LifeManager {
 
     Life life;
 
-    public UI_Life uilife;
-
-    private void Start()
+    public LifeManager(int _initial_life, params IObserver[] observers)
     {
-        life = new Life(3,uilife);
+        life = new Life(_initial_life, observers);
     }
 
     public void Hit()
