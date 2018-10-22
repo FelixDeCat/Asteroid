@@ -177,7 +177,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 454746063}
-  - component: {fileID: 454746062}
   m_Layer: 0
   m_Name: LifeManager
   m_TagString: Untagged
@@ -185,18 +184,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &454746062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 454746061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05354b05e16cbf4491a319c461b709c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uilife: {fileID: 559291834}
 --- !u!4 &454746063
 Transform:
   m_ObjectHideFlags: 0
@@ -682,12 +669,17 @@ Prefab:
         type: 2}
       propertyPath: lifemanager
       value: 
-      objectReference: {fileID: 454746062}
+      objectReference: {fileID: 0}
     - target: {fileID: 114864012310220152, guid: 94d02b5074fcf20478179f46259c1e18,
         type: 2}
       propertyPath: rb2d
       value: 
       objectReference: {fileID: 1631911101}
+    - target: {fileID: 114864012310220152, guid: 94d02b5074fcf20478179f46259c1e18,
+        type: 2}
+      propertyPath: obs_ui_life
+      value: 
+      objectReference: {fileID: 559291834}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94d02b5074fcf20478179f46259c1e18, type: 2}
   m_IsPrefabParent: 0
