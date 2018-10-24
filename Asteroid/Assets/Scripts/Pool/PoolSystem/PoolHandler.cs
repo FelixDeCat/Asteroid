@@ -10,6 +10,7 @@
             pool = new Pool<T>(Build, OnActive, OnDisable, cant);
         }
         protected abstract T Build();
+
         private void OnDisable(PoolObj<T> obj)
         {
             obj.GetObj.Deactivate();

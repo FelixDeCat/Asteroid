@@ -590,7 +590,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1631911102
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -680,6 +680,11 @@ Prefab:
       propertyPath: obs_ui_life
       value: 
       objectReference: {fileID: 559291834}
+    - target: {fileID: 114864012310220152, guid: 94d02b5074fcf20478179f46259c1e18,
+        type: 2}
+      propertyPath: clip_lose_life
+      value: 
+      objectReference: {fileID: 8300000, guid: db062f2f596a0ff4f8791f7fa487468d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94d02b5074fcf20478179f46259c1e18, type: 2}
   m_IsPrefabParent: 0

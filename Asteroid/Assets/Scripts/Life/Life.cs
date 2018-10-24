@@ -7,22 +7,19 @@ public class Life : ISubject
     List<IObserver> observers = new List<IObserver>();
 
     int health;
-    
+
     public int Health
     {
         get { return health; }
-        set
-        {
-            if (value > -1)
-            {
+        set {
+            if (value > -1) {
                 if (value > maxHealth) health = maxHealth;
-                else health = value;
-                NotifyObservers();
+                else {
+                    health = value;
+                    NotifyObservers();
+                }
             }
-            else
-            {
-                health = 0;
-            }
+            else health = 0;
         }
     }
 
@@ -39,10 +36,11 @@ public class Life : ISubject
         maxHealth = maxlife;
         health = maxlife;
         foreach (var ob in _observers) this.observers.Add(ob);
-        NotifyObservers();
+        InitializeObservers();
     }
 
     public void NotifyObservers() { foreach (var ob in observers) ob.Notify(health); }
+    public void InitializeObservers() { foreach (var ob in observers) ob.Initialize(health); }
     public void Suscribe(IObserver obs) { this.observers.Add(obs); }
     public void UnSuscribe(IObserver obs) { this.observers.Remove(obs); }
 }

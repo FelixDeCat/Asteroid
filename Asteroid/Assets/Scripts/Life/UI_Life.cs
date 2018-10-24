@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Tools.Extensions;
 
 public class UI_Life : MonoBehaviour, IObserver
 {
-    Transform parent;
 
     public Sprite backContainerSprite;
     public Sprite frontContainerSprite;
@@ -15,9 +15,10 @@ public class UI_Life : MonoBehaviour, IObserver
 
     List<GraphicContainer> containers = new List<GraphicContainer>();
 
-    void Awake()
+
+    public void Initialize(object obj = null)
     {
-        parent = this.transform;
+        Notify(obj);
     }
 
     public void Notify(object obj = null)
@@ -25,7 +26,7 @@ public class UI_Life : MonoBehaviour, IObserver
         try
         {
             var cant = (int)obj;
-            while (containers.Count < cant) containers.Add(CreateContainer(parent));
+            while (containers.Count < cant) containers.Add(CreateContainer());
             for (int i = 0; i < containers.Count; i++)
             {
                 int physical_position = i + 1;
@@ -36,20 +37,24 @@ public class UI_Life : MonoBehaviour, IObserver
         catch (System.InvalidCastException ex) { Debug.Log("Can not cast to Int32: " + ex); }
     }
 
-    GraphicContainer CreateContainer(Transform parent)
+    
+
+    GraphicContainer CreateContainer()
     {
-        var rparent = parent.gameObject.CreateDefaultSubobject<RectTransform>("Container");
+        var rparent = this.transform.gameObject.CreateDefaultSubObject<RectTransform>("Container");
         rparent.sizeDelta = new Vector2(size, size);
 
-        var back = rparent.gameObject.CreateDefaultSubobject<Image>("back");
-        var front = rparent.gameObject.CreateDefaultSubobject<Image>("front");
+        var back = rparent.gameObject.CreateDefaultSubObject<Image>("back");
+        var front = rparent.gameObject.CreateDefaultSubObject<Image>("front");
 
-        back.rectTransform.Stretch();
-        front.rectTransform.Stretch();
+        back.Stretch();
+        front.Stretch();
 
         back.sprite = backContainerSprite;
         front.sprite = frontContainerSprite;
 
-        return new GraphicContainer(rparent, back, front);
+        return new GraphicContainer(back, front);
     }
+
+    
 }

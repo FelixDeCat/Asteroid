@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PoolSystem;
 using System;
+using Tools.Extensions;
 
 // 3 cosas solo hay que hacer...
 
@@ -29,11 +30,9 @@ public class BulletHandler : PoolHandler<Pooleable_Bullet>
     //overraidear el Build (Muy Importante), este internamente apunta al delegate del Factory
     protected override Pooleable_Bullet Build()
     {
-        GameObject go = GameObject.Instantiate(model);
-        go.transform.SetParent(parent);
-        go.transform.position = parent.position;
+        var bullet = parent.gameObject
+            .CreateDefaultSubObject<Pooleable_Bullet>("bullet", model);
 
-        Pooleable_Bullet bullet = go.GetComponent<Pooleable_Bullet>();
         bullet.speed = speed;
         bullet.damage = damage;
         bullet.point = point;
@@ -44,6 +43,6 @@ public class BulletHandler : PoolHandler<Pooleable_Bullet>
 
     public void Shoot()
     {
-        GetObj();
+        var bullet = GetObj();
     }
 }

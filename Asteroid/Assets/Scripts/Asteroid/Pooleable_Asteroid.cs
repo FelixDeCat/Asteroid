@@ -4,12 +4,21 @@ using System;
 using UnityEngine;
 using PoolSystem;
 
+
 public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid> {
 
     public Action<Pooleable_Asteroid, int> callback_to_return;
 
+    Rigidbody2D myrb;
+    Collider2D myCollider;
+
+    ScreenLimiter screenlimiter;
+
     public SpriteRenderer my_sp_render;
     bool move;
+
+    Vector2 position;
+    Vector2 dirvector;
 
     int _life;
     int Life {
@@ -23,7 +32,6 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid> 
             }
         }
     }
-
     int _size;
     int Size {
         get { return _size; }
@@ -37,10 +45,21 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid> 
         }
     }
 
-    public void SpawnInfo(int param_size, int param_life)
+    public void Awake()
     {
+        myrb = gameObject.GetComponent<Rigidbody2D>();
+        myCollider = gameObject.GetComponent<Collider2D>();
+        screenlimiter = new ScreenLimiter(transform);
+    }
+
+    public void SetDataForSpawn(int param_size, int param_life, Vector3 pos, Vector3 dir, int force = 5)
+    {
+        Debug.Log("A");
         Size = param_size;
         Life = param_life;
+
+        transform.position = pos;
+        myrb.AddForce(dir * force, ForceMode2D.Impulse);
     }
 
     public void Activate()
@@ -48,6 +67,7 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid> 
         my_sp_render.enabled = true;
         move = true;
         gameObject.name = "Asteroid (Active)";
+        myCollider.enabled = true;
     }
 
     public void Deactivate()
@@ -55,6 +75,14 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid> 
         my_sp_render.enabled = false;
         move = false;
         gameObject.name = "Asteroid";
+        myCollider.enabled = false;
+        myrb.velocity = Vector2.zero;
+    }
+
+    void Update()
+    {
+        if (!move) return;
+        screenlimiter.Manual_Update();
     }
 
     public void Destroy()

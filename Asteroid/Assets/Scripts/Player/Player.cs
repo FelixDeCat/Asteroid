@@ -9,17 +9,22 @@ public class Player : MonoBehaviour {
 
     BulletHandler bulletHandle;
 
+    
+
     public UI_Life obs_ui_life;
     LifeManager lifemanager;
 
+    public AudioClip clip_lose_life;
+    SoundHandler obs_sound_life;
+
     public Rigidbody2D rb2d;
-    ScreenLimits screenlimits;
+    ScreenLimiter screenlimits;
 
     private void Start()
     {
         bulletHandle = new BulletHandler(transform.position, bullet_model, bullet_parent,  5, 10, 10);
-        screenlimits = new ScreenLimits(transform,1);
-        lifemanager = new LifeManager(3, obs_ui_life);
+        screenlimits = new ScreenLimiter(transform);
+        lifemanager = new LifeManager(3, obs_ui_life, new SoundHandler(clip_lose_life));
     }
 
     void Update()
