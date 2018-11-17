@@ -6,77 +6,54 @@ using System.IO;
 public class JsonSaveLoad<T> {
 
     static string path = @"";
-    string _nombreDocumento;
-    public string textoConvertido;
-    public ListObjs listaConvert;
-    public List<T> currentObjects;
+    string docname;
+    public string convertedtext;
+    public ListObjs2 objList;
+    public List<T> current;
     public class ListObjs { public T[] array_objects; }
+    public class ListObjs2 { public List<T> array_objects; }
 
-    public JsonSaveLoad(string documentName) {
-        _nombreDocumento = documentName;
-        currentObjects = new List<T>();
-        listaConvert = new ListObjs { array_objects = new T[100] };
-        path = @"" + _nombreDocumento + ".txt";
-    }
-
-    public void Guardar(List<T> _list) {
-        currentObjects = _list;
-        listaConvert.array_objects = _list.ToArray();
-        Save();
+    public JsonSaveLoad(string _docname) {
+        docname = _docname;
+        current = new List<T>();
+        //objList = new ListObjs { array_objects = new T[100] };
+        objList = new ListObjs2 { array_objects = new List<T>() };
+        path = @"" + docname + ".txt";
     }
 
-    public List<T> Cargar() {
-        Load();
-        return currentObjects;
+    public void Save(List<T> _list) {
+        current = _list;
+        //objList.array_objects = _list.ToArray();
+        objList.array_objects = _list;
+        convertedtext = JsonUtility.ToJson(objList,true);
+        File.WriteAllText(path, convertedtext);
     }
 
-    ///////////////////////////////
-    /// SAVE
-    ///////////////////////////////
-    public void Save()
-    {
-        ConvertirAString();
-        GuardarTexto();
+    public List<T> Load() {
+        Check();
+        convertedtext = File.ReadAllText(path);
+        objList = JsonUtility.FromJson<ListObjs2>(convertedtext);
+        foreach (T o in objList.array_objects) { current.Add(o); }
+        return current;
     }
-    void ConvertirAString() { textoConvertido = JsonUtility.ToJson(listaConvert); }
-    void GuardarTexto() { File.WriteAllText(path, textoConvertido); }
 
-    ///////////////////////////////
-    /// SAVE
-    ///////////////////////////////
-
-    public void Load()
-    {
-        CargarTexto();
-        ConvertirATipoDeObjeto();
-    }
-    void CargarTexto()
-    {
-        Comprobacion();
-        textoConvertido = File.ReadAllText(path);
-    }
-    void ConvertirATipoDeObjeto()
-    {
-        listaConvert = JsonUtility.FromJson<ListObjs>(textoConvertido);
-        foreach (T o in listaConvert.array_objects) { currentObjects.Add(o); }
-    }
-    void Comprobacion()
+    void Check()
     {
         if (File.Exists(path))
         {
-            textoConvertido = File.ReadAllText(path);
-            if (textoConvertido == "")
+            convertedtext = File.ReadAllText(path);
+            if (convertedtext == "")
             {
-                textoConvertido = "{\"currentObjects\":[]}";
-                File.WriteAllText(path, textoConvertido);
+                convertedtext = "{}";
+                File.WriteAllText(path, convertedtext);
             }
         }
         else
         {
             File.Create(path);
             File.OpenWrite(path);
-            textoConvertido = "{\"currentObjects\":[]}";
-            File.WriteAllText(path, textoConvertido);
+            convertedtext = "{}";
+            File.WriteAllText(path, convertedtext);
         }
     }
 }

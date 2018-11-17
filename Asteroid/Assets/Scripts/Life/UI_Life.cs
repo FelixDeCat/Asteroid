@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using Tools.Extensions;
 
-public class UI_Life : MonoBehaviour, IObserver
+public class UI_Life : MonoBehaviour
 {
 
     public Sprite backContainerSprite;
@@ -15,29 +15,16 @@ public class UI_Life : MonoBehaviour, IObserver
 
     List<GraphicContainer> containers = new List<GraphicContainer>();
 
-
-    public void Initialize(object obj = null)
+    public void OnLifeChange(int value)
     {
-        Notify(obj);
-    }
-
-    public void Notify(object obj = null)
-    {
-        try
+        while (containers.Count < value) containers.Add(CreateContainer());
+        for (int i = 0; i < containers.Count; i++)
         {
-            var cant = (int)obj;
-            while (containers.Count < cant) containers.Add(CreateContainer());
-            for (int i = 0; i < containers.Count; i++)
-            {
-                int physical_position = i + 1;
-                if (physical_position <= cant) containers[i].TurnOn();
-                else containers[i].TurnOff();
-            }
+            int physical_position = i + 1;
+            if (physical_position <= value) containers[i].TurnOn();
+            else containers[i].TurnOff();
         }
-        catch (System.InvalidCastException ex) { Debug.Log("Can not cast to Int32: " + ex); }
     }
-
-    
 
     GraphicContainer CreateContainer()
     {

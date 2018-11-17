@@ -1,53 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tools.Extensions;
+using System;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
+    public int maxVelocityMagnitude;
+    public int speedForce;
+    public int rotSpeed;
 
-    public GameObject bullet_model;
-    public Transform bullet_parent;
-
-    BulletHandler bulletHandle;
-
-    
-
-    public UI_Life obs_ui_life;
-    LifeManager lifemanager;
-
-    public AudioClip clip_lose_life;
-    SoundHandler obs_sound_life;
+    public event Action CrashAction;
 
     public Rigidbody2D rb2d;
     ScreenLimiter screenlimits;
 
-    private void Start()
-    {
-        bulletHandle = new BulletHandler(transform.position, bullet_model, bullet_parent,  5, 10, 10);
-        screenlimits = new ScreenLimiter(transform);
-        lifemanager = new LifeManager(3, obs_ui_life, new SoundHandler(clip_lose_life));
-    }
+    public GunBase[] guns;
+    int gunindex = 0;
+
+    public void Crash() { CrashAction(); }
+    public void Initialize() { screenlimits = new ScreenLimiter(transform); }
+    public void Listener_CrashAction(Action crash) { CrashAction += crash; }
+
+    public void EV_NextWeapon() { gunindex.NextIndex(guns.Length); }
+    public void EV_OnPressToShoot() { guns[gunindex].OnPress(); }
+    public void EV_OnReleaseToShoot() { guns[gunindex].OnRelease(); }
+    public void EV_OnMoveForward() { if (rb2d.velocity.magnitude < maxVelocityMagnitude) rb2d.AddForce(transform.up * speedForce, ForceMode2D.Force); }
+    public void EV_OnRotate(float r) { transform.Rotate(0, 0, rotSpeed * r); }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) bulletHandle.Shoot();
-        if (Input.GetKeyDown(KeyCode.R)) lifemanager.Hit(); 
-        if (Input.GetKeyDown(KeyCode.T)) lifemanager.AddHealth(); 
-        if (Input.GetKeyDown(KeyCode.Y)) lifemanager.IncreaseLife();
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            rb2d.AddForce(transform.up*10, ForceMode2D.Force);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(0,0,5);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(0, 0, -5);
-        }
-
         screenlimits.Manual_Update();
     }
 }

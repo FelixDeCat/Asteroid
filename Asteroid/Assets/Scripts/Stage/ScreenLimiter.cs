@@ -10,7 +10,7 @@ public class ScreenLimiter
     float up;
     float down;
 
-    float offset = 1;
+    float offset = 0.5f;
 
     public ScreenLimiter(Transform _trans)
     {

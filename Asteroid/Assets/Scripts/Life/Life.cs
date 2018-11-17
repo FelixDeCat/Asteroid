@@ -1,12 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Life : ISubject
+public class Life
 {
-    List<IObserver> observers = new List<IObserver>();
+
+    //variables
+    public enum EV_LIFE { LOSE_LIFE, GAIN_LIFE, ON_START }
+
+    public event Action<int> loselife;
+    public event Action<int> gainlife;
+    public event Action<int> start;
 
     int health;
+    int maxHealth;
 
     public int Health
     {
@@ -15,13 +23,24 @@ public class Life : ISubject
             if (value > -1) {
                 if (value > maxHealth) health = maxHealth;
                 else {
+                    if (value < health) loselife(value);
+                    else if(value > health) gainlife(value);
                     health = value;
-                    NotifyObservers();
                 }
             }
             else health = 0;
         }
     }
+
+    //Constructor
+
+    public Life(int maxlife)
+    {
+        maxHealth = maxlife;
+        health = maxlife;
+    }
+
+    //Functions
 
     public void IncreaseLife(int val)
     {
@@ -29,18 +48,23 @@ public class Life : ISubject
         Health = maxHealth;
     }
 
-    int maxHealth;
-
-    public Life(int maxlife, params IObserver[] _observers)
+    public void SetLife(int val)
     {
-        maxHealth = maxlife;
-        health = maxlife;
-        foreach (var ob in _observers) this.observers.Add(ob);
-        InitializeObservers();
+        maxHealth = val;
+        Health = maxHealth;
     }
 
-    public void NotifyObservers() { foreach (var ob in observers) ob.Notify(health); }
-    public void InitializeObservers() { foreach (var ob in observers) ob.Initialize(health); }
-    public void Suscribe(IObserver obs) { this.observers.Add(obs); }
-    public void UnSuscribe(IObserver obs) { this.observers.Remove(obs); }
+    public Life AddEventListener(EV_LIFE event_type, Action<int> lifechange)
+    {
+        if (event_type == EV_LIFE.GAIN_LIFE) gainlife += lifechange;
+        if (event_type == EV_LIFE.LOSE_LIFE) loselife += lifechange;
+        if (event_type == EV_LIFE.ON_START) start += lifechange;
+        return this;
+    }
+
+    public Life Close()
+    {
+        start(health);
+        return this;
+    }
 }
