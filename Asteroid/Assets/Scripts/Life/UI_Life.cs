@@ -7,6 +7,8 @@ using Tools.Extensions;
 public class UI_Life : MonoBehaviour
 {
 
+    Life liferef;
+
     public Sprite backContainerSprite;
     public Sprite frontContainerSprite;
 
@@ -42,6 +44,4 @@ public class UI_Life : MonoBehaviour
 
         return new GraphicContainer(back, front);
     }
-
-    
 }

@@ -16,8 +16,8 @@ public class BulletHandler : PoolHandler<Pooleable_Bullet>
     GameObject model;
     Transform parent;
 
-    public Func<Vector3> GetPosition;
-    public Func<Quaternion> GetDirection;
+    public event Func<Vector3> GetPosition;
+    public event Func<Quaternion> GetDirection;
 
     //Implementar el constructor del PoolHandler con el :base + los parametros que se te canten
     public BulletHandler(GameObject model, Transform parent, float speed, int damage, int cant = 10) : base(cant)
@@ -27,8 +27,6 @@ public class BulletHandler : PoolHandler<Pooleable_Bullet>
         this.model = model;
         this.parent = parent;
     }
-
-    
 
     //overraidear el Build (Muy Importante), este internamente apunta al delegate del Factory
     protected override Pooleable_Bullet Build()

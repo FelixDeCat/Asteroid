@@ -39,6 +39,26 @@
             return pool[pool.Count - 1];
         }
 
+        public bool AllObjectsReleased()
+        {
+            for (int i = 0; i< pool.Count; i++)
+            {
+                if (pool[i].IsActive)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public int ActiveCount()
+        {
+            var aux = 0;
+            for (int i = 0; i < pool.Count; i++)
+                if (pool[i].IsActive) aux++;
+            return aux;
+        }
+
         void Create()
         {
 

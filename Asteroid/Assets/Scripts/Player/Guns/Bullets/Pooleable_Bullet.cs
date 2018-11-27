@@ -62,7 +62,7 @@ public class Pooleable_Bullet : MonoBehaviour, IPooleable<Pooleable_Bullet>
 
         if (move)
         {
-            if (timer < 2)
+            if (timer < 1)
             {
                 timer = timer + 1 * Time.deltaTime;
                 transform.position += transform.up * speed * Time.deltaTime;

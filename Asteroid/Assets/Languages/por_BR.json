@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "key": "lang",
+      "value": "Español"
+    },
+    {
+      "key": "langselect",
+      "value": "selecione seu idioma"
+    },
+    {
+      "key": "accept",
+      "value": "aceitar"
+    },
+    {
+      "key": "life",
+      "value": "Vida"
+    }
+  ]
+}

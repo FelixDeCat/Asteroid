@@ -7,20 +7,23 @@ public class Score : MonoBehaviour {
     [SerializeField] Text txtmain;
     [SerializeField] Text txtaux;
     [SerializeField] Animator anim;
-    int score;
+    int val;
 
-    event Action<int> return_score;
-
-    public void Initialize(Action<int> return_score)
+    public int GetScore()
     {
-        this.return_score += return_score;
+        return val;
+    }
+
+    private void Awake()
+    {
+        val = 0;
+        txtmain.text = txtaux.text = val.ToString();
     }
 
     public void ReceiveScore(int add)
     {
-        score += add;
-        txtmain.text = txtaux.text = score.ToString();
-        return_score(score);
+        val += add;
+        txtmain.text = txtaux.text = val.ToString();
         anim.Play("twinkle");
     }
 }

@@ -14,12 +14,14 @@ public class ParticleObj : MonoBehaviour, IPooleable<ParticleObj> {
 
     public void Activate()
     {
+        gameObject.name = "particle (Active)";
         myparticle.Play();
         check = true;
     }
 
     public void Deactivate()
     {
+        gameObject.name = "particle";
         check = false;
         myparticle.Stop();
     }
@@ -27,7 +29,7 @@ public class ParticleObj : MonoBehaviour, IPooleable<ParticleObj> {
     public void Update()
     {
         if (!check) return;
-        if (myparticle.isPlaying)
+        if (myparticle.isStopped)
         {
             EndAnimation();
         }

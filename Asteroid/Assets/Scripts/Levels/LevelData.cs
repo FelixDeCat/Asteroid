@@ -6,7 +6,8 @@ using UnityEngine;
 public class LevelData {
 
     public string LevelName = "default";
-    public string BuildSceneName = "SceneName";
+
+    public float time_to_initiate_level = 1f;//
 
     public int AsteroidsInitialSize = 3;//
     public int AsteroidsQuantity = 4;//
@@ -15,6 +16,7 @@ public class LevelData {
     public int shiplife = 3;//
     public int MaxVelocityMagnitudForShip = 20;//
     public int speedforce = 8;//
+    public int speedrunForce;//
     public int rotSpeed = 5;//
 
     public int timeToSpawnEnemies = 10;

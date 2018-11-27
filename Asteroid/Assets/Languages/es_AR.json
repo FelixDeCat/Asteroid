@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "key": "lang",
+      "value": "Español"
+    },
+    {
+      "key": "langselect",
+      "value": "Selecciona tu lenguaje"
+    },
+    {
+      "key": "accept",
+      "value": "aceptar"
+    },
+    {
+      "key": "play",
+      "value": "jugar"
+    },
+    {
+      "key": "options",
+      "value": "opciones"
+    },
+    {
+      "key": "credits",
+      "value": "creditos"
+    },
+    {
+      "key": "exit",
+      "value": "salir"
+    },
+    {
+      "key": "menu",
+      "value": "menu"
+    },
+	{
+      "key": "back",
+      "value": "regresar"
+    },
+	{
+      "key": "backtotheMenu",
+      "value": "volver al menu"
+    },
+	{
+      "key": "reload",
+      "value": "volver a intentar"
+    },
+	{
+      "key": "win",
+      "value": "Ganaste"
+    },
+	{
+      "key": "lose",
+      "value": "Perdiste"
+    },
+	{
+      "key": "programart",
+      "value": "arte y programacion"
+    },
+    {
+      "key": "life",
+      "value": "Vida"
+    }
+  ]
+}

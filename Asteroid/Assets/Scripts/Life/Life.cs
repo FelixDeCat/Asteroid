@@ -6,12 +6,15 @@ using System;
 public class Life
 {
 
-    //variables
-    public enum EV_LIFE { LOSE_LIFE, GAIN_LIFE, ON_START }
+    UI_Life uilife;
 
-    public event Action<int> loselife;
-    public event Action<int> gainlife;
-    public event Action<int> start;
+    //variables
+    public enum EV_LIFE { LOSE_LIFE, GAIN_LIFE, ON_START, ON_DEATH }
+
+    public event Action loselife;
+    public event Action gainlife;
+    public event Action start;
+    public event Action death;
 
     int health;
     int maxHealth;
@@ -19,25 +22,42 @@ public class Life
     public int Health
     {
         get { return health; }
-        set {
-            if (value > -1) {
+        set
+        {
+            if (value > -1)
+            {
                 if (value > maxHealth) health = maxHealth;
-                else {
-                    if (value < health) loselife(value);
-                    else if(value > health) gainlife(value);
+                else
+                {
+                    if (value < health)
+                    {
+                        gainlife();
+                        uilife.OnLifeChange(value);
+                    }
+                    else if (value > health)
+                    {
+                        loselife();
+                        uilife.OnLifeChange(value);
+                    }
                     health = value;
                 }
             }
-            else health = 0;
+            else
+            {
+                death();
+                health = value;
+            }
         }
     }
 
     //Constructor
 
-    public Life(int maxlife)
+    public Life(int maxHealth, UI_Life uilife)
     {
-        maxHealth = maxlife;
-        health = maxlife;
+        this.maxHealth = maxHealth;
+        health = this.maxHealth;
+        this.uilife = uilife;
+        uilife.OnLifeChange(health);
     }
 
     //Functions
@@ -54,17 +74,10 @@ public class Life
         Health = maxHealth;
     }
 
-    public Life AddEventListener(EV_LIFE event_type, Action<int> lifechange)
-    {
-        if (event_type == EV_LIFE.GAIN_LIFE) gainlife += lifechange;
-        if (event_type == EV_LIFE.LOSE_LIFE) loselife += lifechange;
-        if (event_type == EV_LIFE.ON_START) start += lifechange;
-        return this;
-    }
+    public void AddEventListener_LoseLife(Action listener) { loselife += listener; }
+    public void AddEventListener_GainLife(Action listener) { gainlife += listener; }
+    public void AddEventListener_Death(Action listener) { death += listener; }
 
-    public Life Close()
-    {
-        start(health);
-        return this;
-    }
+
+    
 }

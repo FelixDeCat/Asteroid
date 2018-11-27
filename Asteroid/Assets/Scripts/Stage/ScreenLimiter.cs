@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using Tools.Screen;
 
 public class ScreenLimiter
@@ -24,9 +25,9 @@ public class ScreenLimiter
 
     public void Manual_Update()
     {
-        if (trans.position.x > right) trans.position = new Vector2(left, trans.position.y);
-        if (trans.position.x < left) trans.position = new Vector2(right, trans.position.y);
-        if (trans.position.y > up) trans.position = new Vector2(trans.position.x, down);
-        if (trans.position.y < down) trans.position = new Vector2(trans.position.x, up);
+        if (trans.position.x > right) { trans.position = new Vector2(left, trans.position.y); }
+        if (trans.position.x < left) { trans.position = new Vector2(right, trans.position.y); }
+        if (trans.position.y > up) { trans.position = new Vector2(trans.position.x, down); }
+        if (trans.position.y < down) { trans.position = new Vector2(trans.position.x, up); }
     }
 }

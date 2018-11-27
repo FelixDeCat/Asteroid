@@ -4,7 +4,7 @@
 
     public abstract class PoolHandler<T> where T : IPooleable<T>
     {
-        Pool<T> pool;
+        protected Pool<T> pool;
         public PoolHandler(int cant = 10)
         {
             pool = new Pool<T>(Build, OnActive, OnDisable, cant);

@@ -26,10 +26,21 @@ namespace Tools.Extensions
             tr.offsetMin = new Vector2(0, 0);
         }
 
-        public static void NextIndex(this int current, int count)
+        public static int NextIndex(this int current, int count)
         {
-            if (current >= count - 1) current = 0;
-            else current++;
+            var aux = current;
+            if (current >= count - 1) aux = 0;
+            else aux++;
+
+            return aux;
+        }
+        public static int BackIndex(this int current, int count)
+        {
+            var aux = current;
+            if (current <= 0) aux = count-1;
+            else aux--;
+
+            return aux;
         }
 
         public static void Stretch<T>(this T obj) where T : UnityEngine.UI.Graphic
@@ -58,7 +69,7 @@ namespace Tools.Extensions
             T back = go.GetComponent<T>();
             go.transform.SetParent(owner.transform);
             go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = new Vector3(1, 1, 1);
+            //go.transform.localScale = new Vector3(1, 1, 1);
             return back;
         }
 

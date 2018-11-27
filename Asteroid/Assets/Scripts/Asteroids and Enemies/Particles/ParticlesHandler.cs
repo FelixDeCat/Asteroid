@@ -9,7 +9,7 @@ public class ParticlesHandler : PoolHandler<ParticleObj>, IObserver
     GameObject model;
     Transform parent;
 
-    public ParticlesHandler(GameObject model, Transform parent, int cant = 10) : base(cant)
+    public ParticlesHandler(GameObject model, Transform parent, int cant = 30) : base(cant)
     {
         this.model = model;
         this.parent = parent;
@@ -30,7 +30,8 @@ public class ParticlesHandler : PoolHandler<ParticleObj>, IObserver
 
     void OnAnimationEnd(ParticleObj exp)
     {
-
+        pool.ReleaseObject(exp);
+        parent.gameObject.name = " Particles (" +pool.ActiveCount()+ ")";
     }
 
     public void Initialize(object obj = null)

@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "key": "lang",
+      "value": "English"
+    },
+    {
+      "key": "langselect",
+      "value": "Select your languaje"
+    },
+    {
+      "key": "accept",
+      "value": "accept"
+    },
+    {
+      "key": "play",
+      "value": "play"
+    },
+    {
+      "key": "options",
+      "value": "options"
+    },
+    {
+      "key": "credits",
+      "value": "credits"
+    },
+    {
+      "key": "exit",
+      "value": "exit"
+    },
+    {
+      "key": "menu",
+      "value": "menu"
+    },
+	{
+      "key": "back",
+      "value": "back"
+    },
+	{
+      "key": "backtotheMenu",
+      "value": "back menu"
+    },
+	{
+      "key": "reload",
+      "value": "try again"
+    },
+	{
+      "key": "win",
+      "value": "you win"
+    },
+	{
+      "key": "lose",
+      "value": "you lose"
+    },
+	{
+      "key": "backtotheMenu",
+      "value": "back menu"
+    },
+    {
+      "key": "life",
+      "value": "Life"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+    "array_objects": [
+        {
+            "LevelName": "Level 1",
+            "time_to_initiate_level": 1.0,
+            "AsteroidsInitialSize": 3,
+            "AsteroidsQuantity": 3,
+            "AsteroidsSpeed": 4,
+            "shiplife": 3,
+            "MaxVelocityMagnitudForShip": 20,
+            "speedforce": 8,
+            "speedrunForce": 0,
+            "rotSpeed": 5,
+            "timeToSpawnEnemies": 10,
+            "temporalSpaceBetweenEnemies": 10
+        },
+		{
+            "LevelName": "Level 2",
+            "time_to_initiate_level": 1.0,
+            "AsteroidsInitialSize": 3,
+            "AsteroidsQuantity": 5,
+            "AsteroidsSpeed": 6,
+            "shiplife": 3,
+            "MaxVelocityMagnitudForShip": 20,
+            "speedforce": 8,
+            "speedrunForce": 0,
+            "rotSpeed": 5,
+            "timeToSpawnEnemies": 10,
+            "temporalSpaceBetweenEnemies": 10
+        }
+		,
+		{
+            "LevelName": "Level 3",
+            "time_to_initiate_level": 1.0,
+            "AsteroidsInitialSize": 3,
+            "AsteroidsQuantity": 5,
+            "AsteroidsSpeed": 5,
+            "shiplife": 3,
+            "MaxVelocityMagnitudForShip": 20,
+            "speedforce": 8,
+            "speedrunForce": 0,
+            "rotSpeed": 5,
+            "timeToSpawnEnemies": 10,
+            "temporalSpaceBetweenEnemies": 10
+        }
+		,
+		{
+            "LevelName": "Level 4",
+            "time_to_initiate_level": 1.0,
+            "AsteroidsInitialSize": 4,
+            "AsteroidsQuantity": 7,
+            "AsteroidsSpeed": 7,
+            "shiplife": 3,
+            "MaxVelocityMagnitudForShip": 20,
+            "speedforce": 8,
+            "speedrunForce": 0,
+            "rotSpeed": 5,
+            "timeToSpawnEnemies": 10,
+            "temporalSpaceBetweenEnemies": 10
+        }
+		,
+		{
+            "LevelName": "Level Test1",
+            "time_to_initiate_level": 1.0,
+            "AsteroidsInitialSize": 5,
+            "AsteroidsQuantity": 10,
+            "AsteroidsSpeed": 2,
+            "shiplife": 10,
+            "MaxVelocityMagnitudForShip": 20,
+            "speedforce": 8,
+            "speedrunForce": 0,
+            "rotSpeed": 5,
+            "timeToSpawnEnemies": 10,
+            "temporalSpaceBetweenEnemies": 10
+        }
+		,
+		{
+            "LevelName": "Level Test2",
+            "time_to_initiate_level": 1.0,
+            "AsteroidsInitialSize": 4,
+            "AsteroidsQuantity": 7,
+            "AsteroidsSpeed": 7,
+            "shiplife": 10,
+            "MaxVelocityMagnitudForShip": 20,
+            "speedforce": 8,
+            "speedrunForce": 0,
+            "rotSpeed": 5,
+            "timeToSpawnEnemies": 10,
+            "temporalSpaceBetweenEnemies": 10
+        }
+		
+    ]
+}

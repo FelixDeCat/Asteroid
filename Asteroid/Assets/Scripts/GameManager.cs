@@ -1,68 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Tools.Extensions;
 
 public class GameManager : MonoBehaviour
 {
-
-    int current_score;
+    public Text debug;
 
     public Level currentLevel;
 
+    public Transform spawnpoint;
+
     LevelDataLoader loader;
     public Player playerRef;
-    public AsteroidsAndEnemies AsteroidsAndEnemies;
+    public Asteroids AsteroidsAndEnemies;
     public LifeManager lifemanager;
-
     public Score scoremanager;
-
     public SectorManager sectors;
-
-    [Header("For Life")]
-    public UI_Life uilife;
-    public AudioClip loselife;
-    public AudioClip winLife;
-
-    private void Awake()
-    {
-        currentLevel = new Level();
-        loader = new LevelDataLoader();
-        loader.AddLevel(new LevelData());
-    }
+    public VisualEffectsManager visualeffects;
+    public AudioDBase AudioDataBase;
+    public Message messages;
+    public GameObject MenuLose;
+    public GameObject MenuWin;
+    
 
     private void Start()
     {
-        var leveldata = loader.GetLevel(0);
+        loader = new LevelDataLoader();
+        //loader.AddLevel(new LevelData());//temporal para rellenar el json
+        if (GlobalData.instance == null) Scenes.Load_0_LoadScene();
 
-        lifemanager.Config(leveldata.shiplife, uilife, loselife, winLife);
+        currentLevel = new Level(loader.GetLevel(GlobalData.instance.level),
+            spawnpoint, playerRef, lifemanager, visualeffects, 
+            AsteroidsAndEnemies, sectors, scoremanager, 
+            AudioDataBase, messages, MenuLose, MenuWin);
+        currentLevel.Initialize();
+    }
 
-        playerRef.Initialize();
-        playerRef.Listener_CrashAction(lifemanager.Hit);
-        playerRef.maxVelocityMagnitude = leveldata.MaxVelocityMagnitudForShip;
-        playerRef.speedForce = leveldata.speedforce;
-        playerRef.rotSpeed = leveldata.rotSpeed;
+    public void Btn_backToTheMenu()
+    {
+        Scenes.Load_MainMenu();
+    }
 
-        scoremanager.Initialize(SetScore);
+    public void Btn_ReloadThisScene()
+    {
+        Scenes.ReloadThisScene();
+    }
 
-        AsteroidsAndEnemies
-            .Initialize()
-            .Listener_GetPosToSpawn(sectors.FindRandomPos)
-            .Listener_AddScore(scoremanager.ReceiveScore)
-            .Set_Asteroids_Quantity(leveldata.AsteroidsQuantity)
-            .Set_Asteroids_Force(leveldata.AsteroidsSpeed)
-            .Set_Asteroids_InitialSize(leveldata.AsteroidsInitialSize)
-            .Set_Asteroids_Life(1);
-
-        currentLevel.StartGame();
+    public void Btn_NextLevel()
+    {
+        GlobalData.instance.level = GlobalData.instance.level.NextIndex(loader.levels.Count);
+        Scenes.ReloadThisScene();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            AsteroidsAndEnemies.SpawnAsteroids();
-
         currentLevel.UpdateLevel();
     }
-
-    void SetScore(int score) { current_score = score; }
 }

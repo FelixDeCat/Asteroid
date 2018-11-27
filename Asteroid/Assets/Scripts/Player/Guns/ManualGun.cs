@@ -15,9 +15,9 @@ public class ManualGun : GunBase
 
     private void Start()
     {
-        bulletHandle = new BulletHandler(bullet_model, bullet_parent, 5, 10, 10);
-        bulletHandle.GetPosition = this.GetPosition;
-        bulletHandle.GetDirection = this.GetDirection;
+        bulletHandle = new BulletHandler(bullet_model, bullet_parent, 8, 10, 10);
+        bulletHandle.GetPosition += this.GetPosition;
+        bulletHandle.GetDirection += this.GetDirection;
     }
 
     Vector3 GetPosition() { return pointToShoot.transform.position; }
@@ -39,7 +39,7 @@ public class ManualGun : GunBase
         if (shoot)
         {
             if (timer == 0) Shoot();
-            timer = timer < 0.5f ? timer + 1 * Time.deltaTime : 0;
+            timer = timer < 0.2f ? timer + 1 * Time.deltaTime : 0;
         }
     }
 
