@@ -19,10 +19,10 @@ public class GameManager : MonoBehaviour
     public Score scoremanager;
     public SectorManager sectors;
     public VisualEffectsManager visualeffects;
-    public AudioDBase AudioDataBase;
     public Message messages;
     public GameObject MenuLose;
     public GameObject MenuWin;
+    public EnergyManager energyManager;
     
 
     private void Start()
@@ -33,8 +33,9 @@ public class GameManager : MonoBehaviour
 
         currentLevel = new Level(loader.GetLevel(GlobalData.instance.level),
             spawnpoint, playerRef, lifemanager, visualeffects, 
-            AsteroidsAndEnemies, sectors, scoremanager, 
-            AudioDataBase, messages, MenuLose, MenuWin);
+            AsteroidsAndEnemies, sectors, scoremanager,
+            messages, MenuLose, MenuWin, energyManager);
+
         currentLevel.Initialize();
     }
 

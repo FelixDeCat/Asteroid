@@ -25,7 +25,6 @@ public class Level
 
     #endregion
     #region captura de datos
-    AudioDBase audioDB;
     Asteroids asteroids;
     Message message;
     Player player;
@@ -33,46 +32,72 @@ public class Level
     VisualEffectsManager visualeffects;
     GameObject menulose;
     GameObject menuwin;
+    EnergyManager energyManager;
     #endregion
 
     public Level(LevelData leveldata, Transform spawpoint, Player playerRef,
         LifeManager lifemanager, VisualEffectsManager visualeffects,
         Asteroids asteroids, SectorManager sectors, Score scoremanager,
-        AudioDBase audioDataBase, Message messages, GameObject menulose, GameObject menuwin)
+        Message messages, GameObject menulose, GameObject menuwin,
+        EnergyManager energyManager)
     {
-        audioDB = audioDataBase;
         this.message = messages;
         time_to_initiate_level = leveldata.time_to_initiate_level;
         this.spawnpoint = spawpoint;
         this.menulose = menulose;
         this.menuwin = menuwin;
 
+        this.energyManager = energyManager;
+
         this.visualeffects = visualeffects;
 
-        lifemanager.Config(leveldata.shiplife, OnLoseALife, OnGainALife, OnDeath);
-
-        playerRef.Listener_CrashAction(lifemanager.Hit);
-        playerRef.Listener_CrashAction(PlayerDestroyed);
-        playerRef.maxVelocityMagnitude = leveldata.MaxVelocityMagnitudForShip;
-        playerRef.speedForce = leveldata.speedforce;
-        playerRef.speedRunForce = leveldata.speedrunForce;
-        playerRef.rotSpeed = leveldata.rotSpeed;
-        playerRef.ShootChromaticAberration += visualeffects.ShootCromaticAberration;
-        playerRef.spawpoint = spawpoint;
-
+        lifemanager.Config(leveldata.data_player.shiplife, OnLoseALife, OnGainALife, OnDeath);
 
         player = playerRef;
+
+        player.Listener_CrashAction(lifemanager.Hit);
+        player.Listener_CrashAction(PlayerDestroyed);
+        player.maxVelocityMagnitude = leveldata.data_player.MaxVelocityMagnitudForShip;
+        player.speedForce = leveldata.data_player.speedforce;
+        player.speedRunForce = leveldata.data_player.speedrunForce;
+        player.rotSpeed = leveldata.data_player.rotSpeed;
+        player.ShootChromaticAberration += visualeffects.ShootCromaticAberration;
+        player.spawpoint = spawpoint;
         player.gameObject.transform.position = spawpoint.position;
         player.gameObject.transform.rotation = spawpoint.rotation;
+        foreach (GunBase gun in player.guns) gun.ConfigueConsumition(energyManager);
+        ManualGun mg = player.gameObject.GetComponentInChildren<ManualGun>();
+        mg.bulletSpeed = leveldata.data_bullet.bullet_speed;
+        mg.BulletSize = leveldata.data_bullet.bullet_size;
+        mg.bulletsInPool = leveldata.data_bullet.pool_size;
+        mg.bulletCosume = leveldata.data_bullet.bullet_cosume;
+        mg.timingbetwenbullets = leveldata.data_bullet.time_space_between_bullets;
+        PumpLauncher launcher = player.gameObject.GetComponentInChildren<PumpLauncher>();
+        Bomb bmb = launcher.bomb;
+        bmb.timeToExplode = leveldata.data_bomb.time_to_explode;
+        launcher.bombConsume = leveldata.data_bomb.bombs_cosume;
+        launcher.bombForce = leveldata.data_bomb.bomb_force;
+        bmb.bombSize = leveldata.data_bomb.bomb_size;
+        Laser[] energymagma = player.gameObject.GetComponentsInChildren<Laser>();
+        energymagma[0].cant_consume = leveldata.data_laser.laser_cosume;
+        energymagma[0].sizeXlaser = leveldata.data_laser.size_X_laser;
+        energymagma[0].sizeYlaser = leveldata.data_laser.size_Y_laser;
+        energymagma[1].cant_consume = leveldata.data_shield.laser_cosume;
+        energymagma[1].sizeXlaser = leveldata.data_shield.size_X_laser;
+        energymagma[1].sizeYlaser = leveldata.data_shield.size_Y_laser;
+
+        player.fix_ninja_bug = leveldata.fix_ninja_bug;
+
+        energyManager.recuperationspeed = leveldata.energy_recuperation_speed;
 
         asteroids
             .Initialize()
             .Listener_GetPosToSpawn(sectors.FindRandomPos)
             .Listener_AddScore(scoremanager.ReceiveScore)
             .Listener_AllDestroyed(EndLevel)
-            .Set_Asteroids_Quantity(leveldata.AsteroidsQuantity)
-            .Set_Asteroids_Force(leveldata.AsteroidsSpeed)
-            .Set_Asteroids_InitialSize(leveldata.AsteroidsInitialSize)
+            .Set_Asteroids_Quantity(leveldata.data_asteroid.AsteroidsQuantity)
+            .Set_Asteroids_Force(leveldata.data_asteroid.AsteroidsSpeed)
+            .Set_Asteroids_InitialSize(leveldata.data_asteroid.AsteroidsInitialSize)
             .Set_Asteroids_Life(1);
 
         this.asteroids = asteroids;
@@ -136,7 +161,7 @@ public class Level
                 timer_go_center = 0;
 
                 Win();
-                
+
             }
         }
         #endregion
@@ -173,7 +198,7 @@ public class Level
     public void Win()
     {
         visualeffects.ShootCromaticAberration();
-        player.movement.LightSpeed();
+        player.LigthSpeed();
         player.trail.enabled = true;
         endmessage = true;
     }

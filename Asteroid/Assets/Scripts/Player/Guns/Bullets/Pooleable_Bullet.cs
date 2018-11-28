@@ -9,7 +9,6 @@ using Tools.Screen;
 public class Pooleable_Bullet : MonoBehaviour, IPooleable<Pooleable_Bullet>
 {
     public float speed;
-    public int damage;
     public SpriteRenderer my_sp_render;
     bool move;
     Rigidbody2D myRb;

@@ -804,7 +804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[options]'
+  m_Text: '[chlang]'
 --- !u!222 &1049426953
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebd5dff67ae77e42bdbaaf4a785a2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: options
+  key: chlang
   show: 1
 --- !u!1 &1109084305
 GameObject:
@@ -1103,8 +1103,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1120327299}
-          m_MethodName: OnPointerDown
+        - m_Target: {fileID: 417667263}
+          m_MethodName: Btn_Options
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -41,7 +41,7 @@ public class Message : MonoBehaviour
         gotimer2 = true;
     }
     public void Off_PrincipalMessage() { principalMessage.enabled = false; }
-    public void Off_SecondaryMessage() { secondaryMessage.enabled = false; }
+    public void Off_SecondaryMessage() { /*//secondaryMessage.enabled = false;//*/ }
 
     private void Awake()
     {

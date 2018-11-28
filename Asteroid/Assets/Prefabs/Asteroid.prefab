@@ -264,3 +264,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   my_mesh_render: {fileID: 23773348600763384}
   rotator: {fileID: 4244056420512344}
+  clip_explosion: {fileID: 8300000, guid: 7b8f7099a937b6442beb2640704172e1, type: 3}

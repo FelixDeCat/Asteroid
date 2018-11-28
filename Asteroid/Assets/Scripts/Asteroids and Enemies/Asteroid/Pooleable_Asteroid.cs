@@ -5,6 +5,7 @@ using UnityEngine;
 using PoolSystem;
 using Tools.Extensions;
 using Random = UnityEngine.Random;
+using Tools.Sound;
 
 
 public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid>
@@ -19,6 +20,9 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid>
     Sensor sensor;
     Vector2 position;
     Vector2 dirvector;
+
+    public AudioClip clip_explosion;
+    AudioSource as_explosion;
 
     int _life;
     int Life
@@ -57,6 +61,8 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid>
         screenlimiter = new ScreenLimiter(transform);
         sensor = gameObject.FindAndLink<Sensor>();
         sensor.SubscribeAction(OnCollision);
+
+        as_explosion = ASourceCreator.Create2DSource(clip_explosion, "Explosion asteroid");
     }
 
     void OnCollision(GameObject obj)
@@ -67,7 +73,9 @@ public class Pooleable_Asteroid : MonoBehaviour, IPooleable<Pooleable_Asteroid>
         var player = obj.gameObject.GetComponent<Player>();
         if (player) player.Crash();
 
+        as_explosion.Play();
         Destroy();
+
     }
 
     public void SetDataForSpawn(int param_size, int param_life, Vector3 pos, Vector3 dir, int force = 5)

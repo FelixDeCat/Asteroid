@@ -22,6 +22,8 @@ public class LocalizedText : MonoBehaviour
         textComponent.text = Localization.Instance.TryGetText(key);
     }
 
+    
+
     private void OnValidate()
     {
         if (!show) return;

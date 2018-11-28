@@ -1,93 +1,266 @@
 {
     "array_objects": [
         {
-            "LevelName": "Level 1",
-            "time_to_initiate_level": 1.0,
-            "AsteroidsInitialSize": 3,
-            "AsteroidsQuantity": 3,
-            "AsteroidsSpeed": 4,
-            "shiplife": 3,
-            "MaxVelocityMagnitudForShip": 20,
-            "speedforce": 8,
-            "speedrunForce": 0,
-            "rotSpeed": 5,
-            "timeToSpawnEnemies": 10,
-            "temporalSpaceBetweenEnemies": 10
+            "LevelName": "Basic level",
+            "description": "description0",
+            "time_to_initiate_level": 0.5,
+            "fix_ninja_bug": true,
+            "energy_recuperation_speed": 0.3,
+            "score_per_asteroid": 100,
+            "data_player": {
+                "shiplife": 3,
+                "MaxVelocityMagnitudForShip": 20,
+                "speedforce": 8,
+                "speedrunForce": 0,
+                "rotSpeed": 5
+            },
+            "data_asteroid": {
+                "AsteroidsInitialSize": 3,
+                "AsteroidsQuantity": 4,
+                "AsteroidsSpeed": 4
+            },
+            "data_bullet": {
+                "time_space_between_bullets": 0.3,
+                "bullet_cosume": 1.0,
+                "bullet_speed": 8.0,
+                "pool_size": 20,
+                "bullet_size": 0.5
+            },
+            "data_bomb": {
+                "bombs_cosume": 80,
+                "bomb_force": 2.0,
+                "time_to_explode": 3.0,
+                "bomb_size": 0.4000000059604645
+            },
+            "data_laser": {
+                "laser_cosume": 1.5,
+                "size_X_laser": 0.30000001192092898,
+                "size_Y_laser": 1.0
+            },
+            "data_shield": {
+                "laser_cosume": 0.6000000238418579,
+                "size_X_laser": 1.0,
+                "size_Y_laser": 1.0
+            }
         },
-		{
+        {
             "LevelName": "Level 2",
+            "description": "description1",
             "time_to_initiate_level": 1.0,
-            "AsteroidsInitialSize": 3,
-            "AsteroidsQuantity": 5,
-            "AsteroidsSpeed": 6,
-            "shiplife": 3,
-            "MaxVelocityMagnitudForShip": 20,
-            "speedforce": 8,
-            "speedrunForce": 0,
-            "rotSpeed": 5,
-            "timeToSpawnEnemies": 10,
-            "temporalSpaceBetweenEnemies": 10
+            "fix_ninja_bug": true,
+            "energy_recuperation_speed": 0.3,
+            "score_per_asteroid": 100,
+            "data_player": {
+                "shiplife": 3,
+                "MaxVelocityMagnitudForShip": 15,
+                "speedforce": 8,
+                "speedrunForce": 0,
+                "rotSpeed": 5
+            },
+            "data_asteroid": {
+                "AsteroidsInitialSize": 3,
+                "AsteroidsQuantity": 5,
+                "AsteroidsSpeed": 5
+            },
+            "data_bullet": {
+                "time_space_between_bullets": 0.3,
+                "bullet_cosume": 2.0,
+                "bullet_speed": 8.0,
+                "pool_size": 20,
+                "bullet_size": 0.5
+            },
+            "data_bomb": {
+                "bombs_cosume": 80,
+                "bomb_force": 2.0,
+                "time_to_explode": 3.0,
+                "bomb_size": 0.5
+            },
+            "data_laser": {
+                "laser_cosume": 1.5,
+                "size_X_laser": 0.30000001192092898,
+                "size_Y_laser": 1.0
+            },
+            "data_shield": {
+                "laser_cosume": 0.6000000238418579,
+                "size_X_laser": 1.0,
+                "size_Y_laser": 1.0
+            }
         }
 		,
-		{
+        {
             "LevelName": "Level 3",
+            "description": "description2",
             "time_to_initiate_level": 1.0,
-            "AsteroidsInitialSize": 3,
-            "AsteroidsQuantity": 5,
-            "AsteroidsSpeed": 5,
-            "shiplife": 3,
-            "MaxVelocityMagnitudForShip": 20,
-            "speedforce": 8,
-            "speedrunForce": 0,
-            "rotSpeed": 5,
-            "timeToSpawnEnemies": 10,
-            "temporalSpaceBetweenEnemies": 10
+            "fix_ninja_bug": true,
+            "energy_recuperation_speed": 0.3,
+            "score_per_asteroid": 100,
+            "data_player": {
+                "shiplife": 3,
+                "MaxVelocityMagnitudForShip": 15,
+                "speedforce": 8,
+                "speedrunForce": 0,
+                "rotSpeed": 5
+            },
+            "data_asteroid": {
+                "AsteroidsInitialSize": 4,
+                "AsteroidsQuantity": 5,
+                "AsteroidsSpeed": 5
+            },
+            "data_bullet": {
+                "time_space_between_bullets": 0.3,
+                "bullet_cosume": 2.0,
+                "bullet_speed": 8.0,
+                "pool_size": 20,
+                "bullet_size": 0.5
+            },
+            "data_bomb": {
+                "bombs_cosume": 80,
+                "bomb_force": 2.0,
+                "time_to_explode": 3.0,
+                "bomb_size": 0.5
+            },
+            "data_laser": {
+                "laser_cosume": 1.5,
+                "size_X_laser": 0.30000001192092898,
+                "size_Y_laser": 1.0
+            },
+            "data_shield": {
+                "laser_cosume": 0.6000000238418579,
+                "size_X_laser": 1.0,
+                "size_Y_laser": 1.0
+            }
         }
 		,
-		{
+        {
             "LevelName": "Level 4",
+            "description": "description3",
             "time_to_initiate_level": 1.0,
-            "AsteroidsInitialSize": 4,
-            "AsteroidsQuantity": 7,
-            "AsteroidsSpeed": 7,
-            "shiplife": 3,
-            "MaxVelocityMagnitudForShip": 20,
-            "speedforce": 8,
-            "speedrunForce": 0,
-            "rotSpeed": 5,
-            "timeToSpawnEnemies": 10,
-            "temporalSpaceBetweenEnemies": 10
+            "fix_ninja_bug": true,
+            "energy_recuperation_speed": 0.3,
+            "score_per_asteroid": 100,
+            "data_player": {
+                "shiplife": 3,
+                "MaxVelocityMagnitudForShip": 15,
+                "speedforce": 8,
+                "speedrunForce": 0,
+                "rotSpeed": 5
+            },
+            "data_asteroid": {
+                "AsteroidsInitialSize": 4,
+                "AsteroidsQuantity": 7,
+                "AsteroidsSpeed": 5
+            },
+            "data_bullet": {
+                "time_space_between_bullets": 0.3,
+                "bullet_cosume": 2.0,
+                "bullet_speed": 8.0,
+                "pool_size": 20,
+                "bullet_size": 0.5
+            },
+            "data_bomb": {
+                "bombs_cosume": 80,
+                "bomb_force": 2.0,
+                "time_to_explode": 3.0,
+                "bomb_size": 0.5
+            },
+            "data_laser": {
+                "laser_cosume": 1.5,
+                "size_X_laser": 0.30000001192092898,
+                "size_Y_laser": 1.0
+            },
+            "data_shield": {
+                "laser_cosume": 0.6000000238418579,
+                "size_X_laser": 1.0,
+                "size_Y_laser": 1.0
+            }
         }
 		,
-		{
-            "LevelName": "Level Test1",
+        {
+            "LevelName": "Test 1",
+            "description": "description4",
             "time_to_initiate_level": 1.0,
-            "AsteroidsInitialSize": 5,
-            "AsteroidsQuantity": 10,
-            "AsteroidsSpeed": 2,
-            "shiplife": 10,
-            "MaxVelocityMagnitudForShip": 20,
-            "speedforce": 8,
-            "speedrunForce": 0,
-            "rotSpeed": 5,
-            "timeToSpawnEnemies": 10,
-            "temporalSpaceBetweenEnemies": 10
+            "fix_ninja_bug": false,
+            "energy_recuperation_speed": 0.3,
+            "score_per_asteroid": 100,
+            "data_player": {
+                "shiplife": 10,
+                "MaxVelocityMagnitudForShip": 15,
+                "speedforce": 8,
+                "speedrunForce": 0,
+                "rotSpeed": 5
+            },
+            "data_asteroid": {
+                "AsteroidsInitialSize": 4,
+                "AsteroidsQuantity": 7,
+                "AsteroidsSpeed": 5
+            },
+            "data_bullet": {
+                "time_space_between_bullets": 0.3,
+                "bullet_cosume": 2.0,
+                "bullet_speed": 8.0,
+                "pool_size": 20,
+                "bullet_size": 0.5
+            },
+            "data_bomb": {
+                "bombs_cosume": 80,
+                "bomb_force": 2.0,
+                "time_to_explode": 3.0,
+                "bomb_size": 0.5
+            },
+            "data_laser": {
+                "laser_cosume": 0.0,
+                "size_X_laser": 0.30000001192092898,
+                "size_Y_laser": 1.0
+            },
+            "data_shield": {
+                "laser_cosume": 0.0,
+                "size_X_laser": 1.0,
+                "size_Y_laser": 1.0
+            }
         }
 		,
-		{
-            "LevelName": "Level Test2",
+        {
+            "LevelName": "Test 2",
+            "description": "description5",
             "time_to_initiate_level": 1.0,
-            "AsteroidsInitialSize": 4,
-            "AsteroidsQuantity": 7,
-            "AsteroidsSpeed": 7,
-            "shiplife": 10,
-            "MaxVelocityMagnitudForShip": 20,
-            "speedforce": 8,
-            "speedrunForce": 0,
-            "rotSpeed": 5,
-            "timeToSpawnEnemies": 10,
-            "temporalSpaceBetweenEnemies": 10
+            "fix_ninja_bug": false,
+            "energy_recuperation_speed": 0.3,
+            "score_per_asteroid": 100,
+            "data_player": {
+                "shiplife": 10,
+                "MaxVelocityMagnitudForShip": 15,
+                "speedforce": 8,
+                "speedrunForce": 0,
+                "rotSpeed": 5
+            },
+            "data_asteroid": {
+                "AsteroidsInitialSize": 6,
+                "AsteroidsQuantity": 10,
+                "AsteroidsSpeed": 6
+            },
+            "data_bullet": {
+                "time_space_between_bullets": 0.3,
+                "bullet_cosume": 2.0,
+                "bullet_speed": 8.0,
+                "pool_size": 20,
+                "bullet_size": 0.5
+            },
+            "data_bomb": {
+                "bombs_cosume": 80,
+                "bomb_force": 2.0,
+                "time_to_explode": 3.0,
+                "bomb_size": 0.5
+            },
+            "data_laser": {
+                "laser_cosume": 0.0,
+                "size_X_laser": 0.30000001192092898,
+                "size_Y_laser": 1.0
+            },
+            "data_shield": {
+                "laser_cosume": 0.0,
+                "size_X_laser": 1.0,
+                "size_Y_laser": 1.0
+            }
         }
-		
     ]
 }

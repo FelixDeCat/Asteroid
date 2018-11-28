@@ -4,6 +4,10 @@
       "key": "lang",
       "value": "English"
     },
+	{
+      "key": "chlang",
+      "value": "language"
+    },
     {
       "key": "langselect",
       "value": "Select your languaje"
@@ -53,12 +57,67 @@
       "value": "you lose"
     },
 	{
-      "key": "backtotheMenu",
-      "value": "back menu"
+      "key": "energy",
+      "value": "energy"
+    },
+	{
+      "key": "nextlevel",
+      "value": "next level"
+    },
+	{
+      "key": "automatic",
+      "value": "automatic"
+    },
+	{
+      "key": "laser",
+      "value": "laser"
+    },
+	{
+      "key": "bomb",
+      "value": "bomb"
+    },
+	{
+      "key": "shield",
+      "value": "shield"
     },
     {
       "key": "life",
       "value": "Life"
+    }
+	,
+    {
+      "key": "description0",
+      "value": "(easy)Initial level with 3 lives, 4 asteroids, size 3"
+    }
+	,
+    {
+      "key": "description1",
+      "value": "(normal) 3 lives, 5 asteroids, size 3"
+    }
+	,
+    {
+      "key": "description2",
+      "value": "(hard) 3 lives, 5 asteroids, size 4"
+    }
+	,
+    {
+      "key": "description4",
+      "value": "(very hard)3 lives, 7 asteroids, size 4"
+    }
+	,
+    {
+      "key": "description5",
+      "value": "(test) 10 lives, hack(active), shield no consume, laser no consume"
+    }
+	,
+    {
+      "key": "description6",
+      "value": "(test) idem, 10 asteroids, size 6"
+    }
+	,
+	{
+      "key": "programart",
+      "value": "art and programming"
     }
   ]
 }

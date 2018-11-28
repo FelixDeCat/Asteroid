@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Tools.Sound;
 using System;
 
 public class Bomb : MonoBehaviour {
@@ -9,6 +10,12 @@ public class Bomb : MonoBehaviour {
     Rigidbody2D rb2D;
 
     bool onTheAir = false;
+
+    public float timeToExplode = 3;
+    public float bombSize = 0.4f;
+
+    public AudioClip clip_explode;
+    AudioSource as_explode;
 
     ScreenLimiter screenlimiter;
 
@@ -24,6 +31,7 @@ public class Bomb : MonoBehaviour {
     private void Awake()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
+        as_explode = ASourceCreator.Create2DSource(clip_explode, "explode");
     }
 
     private void Start()
@@ -38,7 +46,10 @@ public class Bomb : MonoBehaviour {
 
     private void Update() { screenlimiter.Manual_Update(); }
 
-    void ActivateBomb() { renders.ForEach(x => x.enabled = true); }
+    void ActivateBomb() {
+        transform.localScale = new Vector3(bombSize,bombSize,bombSize);
+        renders.ForEach(x => x.enabled = true);
+    }
     void DeactivateBomb() { renders.ForEach(x => x.enabled = false); }
     void ActivateExplosion()
     {
@@ -47,6 +58,7 @@ public class Bomb : MonoBehaviour {
         sp.enabled = true;
         colexplosion.enabled = true;
         anim.Play("Explosion");
+        as_explode.Play();
     }
     void DeactivateExplosion()
     {
@@ -55,7 +67,7 @@ public class Bomb : MonoBehaviour {
         colexplosion.enabled = false;
     }
 
-    public void Launch(Vector2 position, Vector2 direction, int force)
+    public void Launch(Vector2 position, Vector2 direction, float force)
     {
         if (onTheAir) return;
         onTheAir = true;
@@ -64,7 +76,7 @@ public class Bomb : MonoBehaviour {
         transform.up = direction;
         var result = transform.up.normalized * force;
         rb2D.AddForce(result, ForceMode2D.Impulse);
-        Invoke("Explode", 3f);
+        Invoke("Explode", timeToExplode);
     }
 
     //For Explosion

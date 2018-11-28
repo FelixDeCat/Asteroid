@@ -364,17 +364,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'asdsadsd
-
-    ads
-
-    sad
-
-    sada
-
-    sdasdasd
-
-    asdasdsdaasd'
+  m_Text: description
 --- !u!222 &299629936
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -773,6 +763,7 @@ MonoBehaviour:
   parentLevels: {fileID: 1336191458}
   btnlvlmodel: {fileID: 1381385853529588, guid: 6082ccf0277c9a34a9481a7ae9193d2b,
     type: 2}
+  description: {fileID: 299629935}
 --- !u!4 &417667264
 Transform:
   m_ObjectHideFlags: 0

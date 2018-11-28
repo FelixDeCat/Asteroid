@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tools.Sound;
 
 public class ManualGun : GunBase
 {
@@ -8,14 +10,26 @@ public class ManualGun : GunBase
     public Transform bullet_parent;
     public Transform pointToShoot;
 
+    public AudioClip clip_shoot;
+    AudioSource as_shoot;
+
     bool shoot;
     float timer;
+
+    public float bulletSpeed = 8;
+    public float BulletSize = 0.5f;
+    public int bulletsInPool = 20;
+    public float timingbetwenbullets = 0.2f;
+    public float bulletCosume = 1;
+
 
     BulletHandler bulletHandle;
 
     private void Start()
     {
-        bulletHandle = new BulletHandler(bullet_model, bullet_parent, 8, 10, 10);
+        as_shoot = ASourceCreator.Create2DSource(clip_shoot, "bomb");
+
+        bulletHandle = new BulletHandler(bullet_model, bullet_parent, bulletSpeed, BulletSize, bulletsInPool);
         bulletHandle.GetPosition += this.GetPosition;
         bulletHandle.GetDirection += this.GetDirection;
     }
@@ -38,8 +52,15 @@ public class ManualGun : GunBase
     {
         if (shoot)
         {
-            if (timer == 0) Shoot();
-            timer = timer < 0.2f ? timer + 1 * Time.deltaTime : 0;
+            if (timer == 0)
+            {
+                if (em.Consume(bulletCosume))
+                {
+                    as_shoot.Play();
+                    Shoot();
+                }
+            }
+            timer = timer < timingbetwenbullets ? timer + 1 * Time.deltaTime : 0;
         }
     }
 

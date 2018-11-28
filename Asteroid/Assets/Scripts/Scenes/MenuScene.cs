@@ -16,7 +16,7 @@ public class MenuScene : MonoBehaviour {
     }
     public void Btn_Options()
     {
-        Scenes.Load_Options();
+        Scenes.Load_languageSelector();
     }
     public void Btn_Exit()
     {

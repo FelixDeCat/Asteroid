@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelsScene : MonoBehaviour {
 
     LevelDataLoader leveldataloader;
     public Transform parentLevels;
     public GameObject btnlvlmodel;
+    public Text description;
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class LevelsScene : MonoBehaviour {
     internal void SetLevelSelected(int level)
     {
         GlobalData.instance.level = level;
+        description.text = Localization.Instance.TryGetText(leveldataloader.GetLevel(level).description);
     }
 
     public void Btn_Play()

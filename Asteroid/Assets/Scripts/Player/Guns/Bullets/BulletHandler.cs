@@ -11,7 +11,7 @@ using Tools.Extensions;
 public class BulletHandler : PoolHandler<Pooleable_Bullet>
 {
     float speed;
-    int damage;
+    float size;
 
     GameObject model;
     Transform parent;
@@ -20,12 +20,12 @@ public class BulletHandler : PoolHandler<Pooleable_Bullet>
     public event Func<Quaternion> GetDirection;
 
     //Implementar el constructor del PoolHandler con el :base + los parametros que se te canten
-    public BulletHandler(GameObject model, Transform parent, float speed, int damage, int cant = 10) : base(cant)
+    public BulletHandler(GameObject model, Transform parent, float speed,float size, int cant = 10) : base(cant)
     {
         this.speed = speed;
-        this.damage = damage;
         this.model = model;
         this.parent = parent;
+        this.size = size;
     }
 
     //overraidear el Build (Muy Importante), este internamente apunta al delegate del Factory
@@ -35,7 +35,6 @@ public class BulletHandler : PoolHandler<Pooleable_Bullet>
             .CreateDefaultSubObject<Pooleable_Bullet>("bullet", model);
 
         bullet.speed = speed;
-        bullet.damage = damage;
         bullet.callback_to_return += Release;
 
         return bullet;

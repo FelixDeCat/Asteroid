@@ -4,6 +4,10 @@
       "key": "lang",
       "value": "Español"
     },
+	{
+      "key": "chlang",
+      "value": "idioma"
+    },
     {
       "key": "langselect",
       "value": "Selecciona tu lenguaje"
@@ -53,12 +57,66 @@
       "value": "Perdiste"
     },
 	{
+      "key": "nextlevel",
+      "value": "siguiente nivel"
+    },
+	{
+      "key": "automatic",
+      "value": "automatica"
+    },
+	{
+      "key": "laser",
+      "value": "laser"
+    },
+	{
+      "key": "bomb",
+      "value": "bomba"
+    },
+	{
+      "key": "shield",
+      "value": "escudo"
+    },
+	{
+      "key": "energy",
+      "value": "energia"
+    },
+	{
       "key": "programart",
       "value": "arte y programacion"
     },
     {
       "key": "life",
       "value": "Vida"
+    }
+	,
+    {
+      "key": "description0",
+      "value": "(facil) nivel inicial con 3 vidas, 4 asteroides de dimension 3"
+    }
+	,
+    {
+      "key": "description1",
+      "value": "(normal) 3 vidas, 5 asteroides, dimension 3"
+    }
+	,
+    {
+      "key": "description2",
+      "value": "(dificil) 3 vidas, 5 asteroides, dimension 4"
+    }
+	,
+    {
+      "key": "description3",
+      "value": "(muy dificil)3 vidas, 7 asteroides, dimension 4"
+    }
+	,
+    {
+      "key": "description4",
+      "value": "(prueba tecnica) 10 vidas, hack(activado), escudo no consume, laser no consume"
+    }
+	,
+    {
+      "key": "description5",
+      "value": "(prueba tecnica) idem, 10 asteroides, dimension 6"
     }
   ]
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Tools.Extensions;
+using Tools.Sound;
+using UnityEngine.UI;
 using System;
 
 public class Player : MonoBehaviour
@@ -24,26 +26,52 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb2d;
     CircleCollider2D col;
 
+    public AudioClip clip_explosion;
+    public AudioClip clip_lightSpeed;
+    public AudioClip clip_resurrect;
+    AudioSource as_explosion;
+    AudioSource as_lightspeed;
+    AudioSource as_Resurrect;
 
     public GunBase[] guns;
+    public Sprite[] spriteGuns;
+    public Image gunimage;
+    public Text textimage;
+
     public int gunindex = 0;
 
     public Movement movement;
 
     bool canshoot;
     bool shoot;
-    bool fix_ninja_bug = true;
+    public bool fix_ninja_bug = true;
 
     public event Action ShootChromaticAberration;
+
+    public void LigthSpeed()
+    {
+        movement.LightSpeed();
+        LightSpeedSound();
+    }
+
+    void LightSpeedSound()
+    {
+        as_lightspeed.Play();
+    }
 
     public void Initialize()
     {
         col = gameObject.GetComponent<CircleCollider2D>();
 
+        as_explosion = ASourceCreator.Create2DSource(clip_explosion,"explosion");
+        as_lightspeed = ASourceCreator.Create2DSource(clip_lightSpeed, "LightSpeed");
+        as_Resurrect = ASourceCreator.Create2DSource(clip_resurrect, "Resurrect");
+
         animator.GetBehaviour<Burst>().SetParticles(burst);
         animator.GetBehaviour<AnimResurrect>().AddEventListener_OnResurrectEnd(OnResurrectAnimationEnded);
         movement = new Movement(rb2d, speedForce, speedRunForce, maxVelocityMagnitude, rotSpeed)
             .AddEventListener_AcellerationEffect(ShootChromaticAberration)
+            .AddEventListener_AcellerationEffect(LightSpeedSound)
             .SetAnimator(animator)
             .SetTrailRenderer(trail);
         trail.enabled = false;
@@ -56,6 +84,7 @@ public class Player : MonoBehaviour
     //1
     public void Crash()
     {
+        as_explosion.Play();
         canshoot = false;
         particles_destroy.Play();
         DeactivateCollision();
@@ -69,6 +98,9 @@ public class Player : MonoBehaviour
         transform.position = spawpoint.position;
         transform.rotation = spawpoint.rotation;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
+        as_Resurrect.Play();
+
+        ShootChromaticAberration();
 
         animator.SetBool("destroyed", false);
     }
@@ -80,20 +112,32 @@ public class Player : MonoBehaviour
         canshoot = true;
     }
 
-    void ActivateCollisions() { col.enabled = true;  }
-    void DeactivateCollision() { col.enabled = false;  rb2d.bodyType = RigidbodyType2D.Static; }
+    void ActivateCollisions() { col.enabled = true; }
+    void DeactivateCollision() { col.enabled = false; rb2d.bodyType = RigidbodyType2D.Static; }
 
-    
+
     public void Listener_CrashAction(Action crash) { advice_to_crash += crash; }
 
     public void EV_NextWeapon()
     {
         if (fix_ninja_bug) guns[gunindex].OnRelease();
         gunindex = gunindex.NextIndex(guns.Length);
+        gunimage.sprite = spriteGuns[gunindex];
+        textimage.text = Localization.Instance.TryGetText(guns[gunindex].name);
         if (fix_ninja_bug && shoot) guns[gunindex].OnPress();
     }
-    public void EV_OnPressToShoot() { if (!canshoot) return; shoot = true; guns[gunindex].OnPress(); }
-    public void EV_OnReleaseToShoot() { if (!canshoot) return; shoot = false; guns[gunindex].OnRelease(); }
+    public void EV_OnPressToShoot()
+    {
+        if (!canshoot) return;
+        shoot = true;
+        guns[gunindex].OnPress();
+    }
+    public void EV_OnReleaseToShoot()
+    {
+        if (!canshoot) return;
+        shoot = false;
+        guns[gunindex].OnRelease();
+    }
     public void EV_OnBegin_MoveLeft() { movement.Begin_MoveLeft(); }
     public void EV_OnExit_MoveLeft() { movement.Exit_MoveLeft(); }
     public void Ev_OnBegin_MoveRight() { movement.Begin_MoveRight(); }
